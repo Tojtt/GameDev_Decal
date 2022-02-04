@@ -378,3 +378,4 @@ Received Import Request.
   path: Assets/Scripts/Enemy/Attack.cs
   artifactKey: Guid(58abf00bea896104b894a35323eae353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scripts/Enemy/Attack.cs using Guid(58abf00bea896104b894a35323eae353) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ec4ec0ea9adeb66a0f9383f15d87de2') in 0.007902 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
