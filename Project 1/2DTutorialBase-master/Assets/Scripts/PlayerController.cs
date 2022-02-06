@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour
         y_input = Input.GetAxisRaw("Vertical");
 
         Move();
+
+        if(Input.GetKeyDown(KeyCode.J)) 
+        {
+            Attack();
+        }
     }
     #endregion
 
@@ -71,6 +76,14 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Attack_functions
+    private void Attack()
+    {
+        Debug.Log("attacking now");
+    }
 
+    IEnumerator AttackRoutine()
+    {
+        yield return null;
+    }
     #endregion
 }
