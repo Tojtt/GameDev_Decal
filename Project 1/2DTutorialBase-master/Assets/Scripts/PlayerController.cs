@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     #region Attack_variables
     public float Damage; 
-    float attackspeed = 1;
+    public float attackspeed = 1;
     float attackTimer;
     public float hitboxtiming;
     public float endanimationtiming;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake() 
     {
         PlayerRB = GetComponent<Rigidbody2D>();     
+        attackTimer = 0;
     }
 
     private void Update() 
@@ -39,9 +40,12 @@ public class PlayerController : MonoBehaviour
 
         Move();
 
-        if(Input.GetKeyDown(KeyCode.J)) 
+        if(Input.GetKeyDown(KeyCode.J) && attackTimer <= 0) 
         {
             Attack();
+        } else 
+        {
+            attackTimer -= Time.deltaTime;
         }
     }
     #endregion
@@ -53,19 +57,23 @@ public class PlayerController : MonoBehaviour
         if(x_input > 0)
         {
             PlayerRB.velocity = Vector2.right * movespeed;
+            currDirection = Vector2.right;
         } 
         else if (x_input < 0)
         {
             PlayerRB.velocity = Vector2.left * movespeed;
+            currDirection = Vector2.left;
         }
 
         else if (y_input > 0)
         {
             PlayerRB.velocity = Vector2.up * movespeed;
+            currDirection = Vector2.up;
         } 
         else if (y_input < 0)
         {
             PlayerRB.velocity = Vector2.down * movespeed;
+            currDirection = Vector2.down;
         }
         else
         {
@@ -79,10 +87,19 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("attacking now");
+        Debug.Log(currDirection);
+        attackTimer = attackspeed;
+        //handles animation and hit boxes
+        StartCoroutine(AttackRoutine());
     }
 
     IEnumerator AttackRoutine()
     {
+        isAttacking = true; 
+        PlayerRB.velocity = Vector2.zero;
+        yield return new WaitForSeconds(hitboxtiming);
+        Debug.Log("Casting hitbox now"); 
+        
         yield return null;
     }
     #endregion
