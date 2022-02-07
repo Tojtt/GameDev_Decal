@@ -25,16 +25,26 @@ public class PlayerController : MonoBehaviour
     Vector2 currDirection;
     #endregion
 
+    #region Animation_components
+    Animator anim;
+    #endregion
+
+
     #region Unity_functions
 
     private void Awake() 
     {
         PlayerRB = GetComponent<Rigidbody2D>();     
         attackTimer = 0;
+        anim = GetComponent<Animator>();
     }
 
     private void Update() 
     {
+        if (isAttacking)
+        {
+            return;
+        }
         x_input = Input.GetAxisRaw("Horizontal");
         y_input = Input.GetAxisRaw("Vertical");
 
@@ -54,6 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        anim.SetBool("Moving", true);
         if(x_input > 0)
         {
             PlayerRB.velocity = Vector2.right * movespeed;
@@ -78,7 +89,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             PlayerRB.velocity = Vector2.zero;
+            anim.SetBool("Moving", false);
         }
+        anim.SetFloat("DirX", currDirection.x);
+        anim.SetFloat("DirY", currDirection.y);
 
     }
     #endregion
@@ -97,9 +111,24 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true; 
         PlayerRB.velocity = Vector2.zero;
+
+        anim.SetTrigger("Attacking");
         yield return new WaitForSeconds(hitboxtiming);
         Debug.Log("Casting hitbox now"); 
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(PlayerRB.position + currDirection, Vector2.one, 0f, Vector2.zero);
+
+        foreach (RaycastHit2D hit in hits)
+        {
+            Debug.Log(hit.transform.name);
+            if (hit.transform.CompareTag("Enemy"))
+            {
+                Debug.Log("Tons of Damage");
+            }
+        }
         
+        yield return new WaitForSeconds(hitboxtiming);
+        isAttacking = false;
+
         yield return null;
     }
     #endregion
