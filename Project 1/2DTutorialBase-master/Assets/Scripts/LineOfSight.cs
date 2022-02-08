@@ -11,6 +11,6 @@ public class LineOfSight : MonoBehaviour
         {
             GetComponentInParent<Enemy>().player = coll.transform;
             Debug.Log("SEE PLAYER RUN AT PLAYER");
-        }
+        }   
     }
 }

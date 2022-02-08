@@ -100,6 +100,9 @@ public class Enemy : MonoBehaviour
     //enemy takes damage based on value param
     public void TakeDamage(float value)
     {
+        //call sound effect
+        FindObjectOfType<AudioManager>().Play("BatHurt");
+        
         //decrement health
         currHealth -= value;
         Debug.Log("Health is now " + currHealth.ToString());
