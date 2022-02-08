@@ -22,11 +22,18 @@ public class Enemy : MonoBehaviour
     public GameObject explosionObj;
     #endregion
 
+    #region Health_variables
+    public float maxHealth;
+    float currHealth;
+    #endregion
+
+
     #region Unity_functions
     //run once on creation
     private void Awake() 
     {
         EnemyRB = GetComponent<Rigidbody2D>();
+        currHealth = maxHealth;
     }
     //run once every frame
     private void Update() 
@@ -57,6 +64,9 @@ public class Enemy : MonoBehaviour
     // Raycasts box for player, casus damage, spawns explosion prefab
     private void Explode()
     {
+        //call sound effect
+        FindObjectOfType<AudioManager>().Play("Explosion");
+
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.zero);
 
         foreach (RaycastHit2D hit in hits)
@@ -68,9 +78,11 @@ public class Enemy : MonoBehaviour
 
                 //spawn explosion
                 Instantiate(explosionObj, transform.position, transform.rotation);
+                hit.transform.GetComponent<PlayerController>().TakeDamage(explosionDamage);
                 
             }
         }
+        
         Destroy(this.gameObject);  
     }
 
@@ -80,6 +92,29 @@ public class Enemy : MonoBehaviour
         {
             Explode();
         }
+    }
+    #endregion
+
+    #region Health_functions
+
+    //enemy takes damage based on value param
+    public void TakeDamage(float value)
+    {
+        //decrement health
+        currHealth -= value;
+        Debug.Log("Health is now " + currHealth.ToString());
+
+        //check for death
+        if(currHealth <= 0)
+        {
+            Die();
+        }
+
+    }
+    private void Die()
+    {
+        //destroy this game object
+        Destroy(this.gameObject);
     }
     #endregion
 }

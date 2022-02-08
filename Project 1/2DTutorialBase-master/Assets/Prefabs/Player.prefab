@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8369891777062550473}
   - component: {fileID: 8369891777062550474}
-  - component: {fileID: 8369891777062550475}
   - component: {fileID: 8369891777062550468}
   - component: {fileID: 8369891777062550479}
   - component: {fileID: 8369891777062550472}
@@ -74,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -91322625
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -5656691077794966639, guid: 504308f08b44af1439720d650a307d95,
     type: 3}
@@ -89,22 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8369891777062550475
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8369891777062550469}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &8369891777062550468
 Rigidbody2D:
   serializedVersion: 4
@@ -143,6 +126,8 @@ MonoBehaviour:
   attackspeed: 0.5
   hitboxtiming: 0.1
   endanimationtiming: 0.1
+  maxHealth: 10
+  HPSlider: {fileID: 0}
 --- !u!70 &8369891777062550472
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
