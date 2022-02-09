@@ -6,8 +6,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
    #region Editor Variables
-   float horizontalBound = 10;
-   float verticalBound = 4;
    float elapsedTime = 0;
 
    [SerializeField]
@@ -46,7 +44,15 @@ public class SpawnManager : MonoBehaviour
       // Else, increase the timer using Time.deltaTime
       foreach(EnemySpawnInfo enemy in m_EnemyTypes)
       {
-         if 
+         if (elapsedTime >= enemy.SpawnRate)
+         {
+            Instantiate(enemy.EnemyPrefab);
+            elapsedTime = 0;
+         } else {
+            elapsedTime = elapsedTime + Time.deltaTime;
+         }
+         
+
       }
 
    }
