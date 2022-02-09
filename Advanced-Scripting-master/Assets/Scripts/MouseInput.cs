@@ -31,7 +31,7 @@ public class MouseInput : MonoBehaviour
          emitParams.applyShapeToPosition = true;
          m_Particles.Emit(emitParams, 100);
 
-         Collider2D[] allOverlaps = Physics2D.OverlapCircleAll(wp, 1.1f);
+         Collider2D[] allOverlaps = Physics2D.OverlapCircleAll(wp, 0.5f);
          Debug.Log(string.Format("Hit {0} objects", allOverlaps.Length));
          for (int i = 0; i < allOverlaps.Length; i++)
          {
@@ -41,10 +41,11 @@ public class MouseInput : MonoBehaviour
             {
                Score.Singleton.AddScore(10);
                Destroy(target);
-            } 
+            }
             else if(target.CompareTag("Goodies"))
             {
                Score.Singleton.AddScore(-10000);
+               Destroy(target);
             }
          }
       }
