@@ -6,9 +6,14 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
    #region Editor Variables
+   float horizontalBound = 10;
+   float verticalBound = 4;
+   float elapsedTime = 0;
+
    [SerializeField]
    [Tooltip("The different types of enemies that should be spawned and their corresponding spawn information.")]
    private EnemySpawnInfo[] m_EnemyTypes;
+   
    #endregion
 
    #region Non-Editor Variables
@@ -39,6 +44,11 @@ public class SpawnManager : MonoBehaviour
       // If it is, just spawn the enemy using Instantiate(m_EnemyTypes[i].EnemyPrefab)
          // Make sure to reset the timer back to the appropriate value based on SpawnRate
       // Else, increase the timer using Time.deltaTime
+      foreach(EnemySpawnInfo enemy in m_EnemyTypes)
+      {
+         if 
+      }
+
    }
    #endregion
 }
