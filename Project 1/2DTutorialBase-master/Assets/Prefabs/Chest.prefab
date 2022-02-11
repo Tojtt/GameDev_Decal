@@ -147,3 +147,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthpack: {fileID: 8282033817520107114, guid: ea23afa6cc76b6d49926b281694903ae,
     type: 3}
+  speedpack: {fileID: 1008402526372014309, guid: 5a2673bfedd27b54e82f53bb88862f63,
+    type: 3}
