@@ -9,6 +9,9 @@ public class Chest : MonoBehaviour
     [SerializeField]
     [Tooltip("health pack")]
     private GameObject healthpack;
+    [SerializeField]
+    [Tooltip("speed pack")]
+    private GameObject speedpack;
     #endregion
 
     #region Chest_functions
@@ -16,7 +19,16 @@ public class Chest : MonoBehaviour
     IEnumerator DestroyChest()
     {
         yield return new WaitForSeconds(.3f);
-        Instantiate(healthpack, transform.position, transform.rotation);
+        float val = Random.Range(0f, 2f);
+        Debug.Log(val);
+        
+        if(val < 1)
+        {
+            Instantiate(healthpack, transform.position, transform.rotation);
+        } else
+        {
+            Instantiate(speedpack, transform.position, transform.rotation);
+        }
         Destroy(this.gameObject);
     }
     
