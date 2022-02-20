@@ -8,6 +8,7 @@ public class PlayerControllerTask1: MonoBehaviour {
 	public float maxspeed;
 	public float jumpforce;
 
+	public GameObject touching;
 	int FloorLayer;
 
 	Rigidbody2D playerRB;
@@ -37,7 +38,7 @@ public class PlayerControllerTask1: MonoBehaviour {
 
 
 		//TASK 1: If someone pushes the space button and?
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space) && isFloor(touching)) {
 			playerRB.velocity = new Vector2 (playerRB.velocity.x, 0);
 			playerRB.AddForce ( new Vector2(0, jumpforce));
 		}
@@ -51,10 +52,13 @@ public class PlayerControllerTask1: MonoBehaviour {
     // use coll.gameObject if you need a reference coll's GameObject
     void OnCollisionEnter2D(Collision2D coll) {
         //TASK 1
+		touching = coll.gameObject;
+
 	}
 
 	// This function is called whenever the Collider2D attached to the gameobject leaves contact with another collider
 	void OnCollisionExit2D(Collision2D coll) {
         //TASK 1
+		touching = null;
 	}
 }

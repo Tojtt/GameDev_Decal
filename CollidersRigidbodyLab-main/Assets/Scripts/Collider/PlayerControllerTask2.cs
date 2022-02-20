@@ -14,6 +14,7 @@ public class PlayerControllerTask2 : MonoBehaviour {
 
 	//TASK 2
 	public bool feetContact;
+	public GameObject touching;
 
 	void Awake() {
 		playerRB = gameObject.GetComponent<Rigidbody2D> ();
@@ -39,7 +40,7 @@ public class PlayerControllerTask2 : MonoBehaviour {
 	}
 
 	bool canJump() {
-        return false;
+		return GetComponentInChildren<FeetColliderScript>().isFloor(touching);
 		//TASK 2
 	}
 }
