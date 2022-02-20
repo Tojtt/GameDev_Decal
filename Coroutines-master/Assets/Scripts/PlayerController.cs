@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.F)) {
             // Task 1: Start Your Coroutine Here
+            StartCoroutine(Death());
         }
 	}
 
@@ -31,5 +32,19 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Task 1: Write Your Coroutine Here
+    IEnumerator Death()
+    {
+        Debug.Log("Starting Infestation");
+        float elapsedTime = 0.0f;
+        float TotalTime = 20.0f;
+        while (elapsedTime < TotalTime) {
+            GetComponent<SpriteRenderer>().color = Color.Lerp(GetComponent<SpriteRenderer>().color, Color.black, elapsedTime/TotalTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        Debug.Log("Starting Infestation");
+    }
+
 
 }
