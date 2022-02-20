@@ -18,7 +18,7 @@ public class CircleMovement : MonoBehaviour {
 		xAxis = Input.GetAxisRaw("Horizontal");
         yAxis = Input.GetAxisRaw("Vertical");
 
-        moveFunction1();
+        moveFunction3();
 
 	}
 
@@ -29,11 +29,13 @@ public class CircleMovement : MonoBehaviour {
 
     void moveFunction2() {
         Vector2 movementVector = new Vector2(xAxis, yAxis);
+        movementVector = movementVector * Time.deltaTime;
         playerRigidbody.MovePosition(playerRigidbody.position + movementVector);
     }
 
     void moveFunction3() {
         Vector2 movementVector = new Vector2(xAxis, yAxis);
+        movementVector = movementVector * 4;
         playerRigidbody.velocity = movementVector;
     }
 }
