@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.F)) {
             // Task 1: Start Your Coroutine Here
-            StartCoroutine(Death());
+            StartCoroutine(FadetoBlack());
         }
 	}
 
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Task 1: Write Your Coroutine Here
-    IEnumerator Death()
+    IEnumerator FadetoBlack()
     {
         Debug.Log("Starting Infestation");
         float elapsedTime = 0.0f;
