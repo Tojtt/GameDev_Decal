@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     [Tooltip("A place to keep the default player object in the level. If a player object already exists, delete this one.")]
     private GameObject m_Player;
+    private string p_SceneName;
 	#endregion
 
 	#region Private Variables
@@ -24,13 +25,30 @@ public class SceneController : MonoBehaviour
 	private void Start ()
     {
         m_Player = GameObject.Find("Player");
+        //GetActiveScene() returns a scene object
+        p_SceneName = SceneManager.GetActiveScene().name;
 	}
     #endregion
 
     #region Main Updates
     private void Update ()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadScene();
+        }
 
 	}
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadSceneAsync(p_SceneName);
+    }
+
+    public void GoToScene(string name)
+    {
+            SceneManager.LoadSceneAsync(name);
+    }
+
     #endregion
 }
