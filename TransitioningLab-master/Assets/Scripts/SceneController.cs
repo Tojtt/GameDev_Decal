@@ -10,10 +10,14 @@ public class SceneController : MonoBehaviour
     [SerializeField]
     [Tooltip("A place to keep the default player object in the level. If a player object already exists, delete this one.")]
     private GameObject m_Player;
-    private string p_SceneName;
+    
+    public GameObject pauseScreen;
+    private bool p_IsPaused = false;
+    
 	#endregion
 
 	#region Private Variables
+    private string p_SceneName;
 	#endregion
 
 	#region Initialization Methods
@@ -36,6 +40,11 @@ public class SceneController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             ReloadScene();
+        }
+
+        if(Input.GetKeyDown(KeyCode.P) && !p_SceneName.Equals("Menu"))
+        {
+            Pause();
         }
 
 	}
